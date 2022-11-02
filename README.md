@@ -10,3 +10,4 @@ Grupo N°4
 # Intregrantes del grupo
 
 - **Nicolás Iván Torres** - Legajo 4215 - Mail: nicolas.torres@est.fi.uncoma.edu.ar - Github: NicoTorress
+- **Sergio Emiliano Rebolledo** - Legajo 4405 - Mail: sergio.rebolledo@est.fi.uncoma.edu.ar - GitHub: sergrebo
