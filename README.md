@@ -11,3 +11,4 @@ Grupo N°4
 
 - **Nicolás Iván Torres** - Legajo 4215 - Mail: nicolas.torres@est.fi.uncoma.edu.ar - Github: NicoTorress
 - **Sergio Emiliano Rebolledo** - Legajo 4405 - Mail: sergio.rebolledo@est.fi.uncoma.edu.ar - GitHub: sergrebo
+- **Valenzuela Maria Jazmin** - Legajo 4322 - Mail: jazmin.valenzuela@est.fi.uncoma.edu.a - Github: jazminValenzuela 
