@@ -55,7 +55,7 @@ $partida = jugarWordix("MELON", strtolower("MaJo"));
 /*
 do {
     $opcion = ...;
-
+    $opcion = seleccionarOpcion();
     
     switch ($opcion) {
         case 1: 
