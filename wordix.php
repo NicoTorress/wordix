@@ -40,6 +40,32 @@ function solicitarNumeroEntre($min, $max)
     return $numero;
 }
 
+
+/** MENU DE OPCIONES
+ * @return int
+ */
+function seleccionarOpcion(){
+    //int $eleccion
+    do{
+        echo "\n--------------MENÚ DE OPCIONES-------------\n" ;
+        echo "1.JUGAR AL WORDIX CON UNA PALABRA ELEGIDA \n";
+        echo "2.JUGAR AL WORDIX CON UNA PALABRA ALEATORIA \n";
+        echo "3.MOSTRAR UNA PARTIDA \n";
+        echo "4.MOSTRAR LA PRIMER PARTIDA GANADORA \n";
+        echo "5.MOSTRAR RESUMEN DE JUGADOR \n";
+        echo "6.MOSTRAR LISTADO DE PARTIDAS ORDENADAS POR JUGADOR Y POR PALABRA \n";
+        echo "7.AGREGAR UNA PALABRA DE 5 LETRAS A WORDIX \n";
+        echo "8.SALIR \n";
+        $eleccion = trim(fgets(STDIN));
+        if($eleccion>8 || $eleccion<1){
+            echo "EL NUMERO INGRESADO ES INVALIDO, INTENTELO DE NUEVO \n";
+        }
+    }while ($eleccion<1 || $eleccion>8);  //repetir mientras el numero sea menor a 1 o mayor a 8
+
+    return $eleccion;
+}
+
+
 /**
  * Escrbir un texto en color ROJO
  * @param string $texto)
