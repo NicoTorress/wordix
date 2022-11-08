@@ -5,7 +5,8 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* Torres, Nicolás Iván. FAI-4215 . Tecnicatura en Desarrollo Web. nicolas.torres@est.fi.uncoma.edu.ar . Usuario Github: NicoTorress */
+/* Torres, Nicolás Iván. FAI-4215 . Tecnicatura en Desarrollo Web. nicolas.torres@est.fi.uncoma.edu.ar . Usuario Github: NicoTorress 
+   Valenzuela, Jazmín María */
 
 
 
