@@ -4,12 +4,8 @@ include_once("wordix.php");
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
-/*  Valenzuela, Jazmin María. FAI-4322. Tecnicatura Universitaria en Desarrollo Web. jazmin.valenzuela@est.fi.uncoma.edu.ar . Usuario Github: jazminValenzuela 
-    Torres, Nicolás Iván. FAI-4215. Tecnicatura Universitaria en Desarrollo Web. nicolas.torres@est.fi.uncoma.edu.ar. Usuario Github: NicoTorress*/
-
-
-
-
+/*Valenzuela, Jazmin María. FAI-4322. Tecnicatura Universitaria en Desarrollo Web. jazmin.valenzuela@est.fi.uncoma.edu.ar . Usuario Github: jazminValenzuela 
+/*Torres, Nicolás Iván. FAI-4215. Tecnicatura Universitaria en Desarrollo Web. nicolas.torres@est.fi.uncoma.edu.ar. Usuario Github: NicoTorress*/
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
