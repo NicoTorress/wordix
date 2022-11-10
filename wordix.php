@@ -66,6 +66,37 @@ function seleccionarOpcion(){
 }
 
 
+/**FUNCION CARGAR PARTIDAS
+ *@return array
+ */
+function cargarPartidas(){
+    //array $coleccionPartidas
+    $coleccionPartidas[0] =["palabraWordix"=>"MANGO","jugador"=>"Jazmin","intentos"=>1,"puntaje"=>20];
+    $coleccionPartidas[1] =["palabraWordix"=>"HUEVO","jugador"=>"Sergio","intentos"=>4,"puntaje"=>10];
+    $coleccionPartidas[2] =["palabraWordix"=>"PIANO","jugador"=>"Jazmin","intentos"=>5,"puntaje"=>15];
+    $coleccionPartidas[3] =["palabraWordix"=>"MELON","jugador"=>"Nico","intentos"=>4,"puntaje"=>12];
+    $coleccionPartidas[4] =["palabraWordix"=>"MUJER","jugador"=>"Sergio","intentos"=>3,"puntaje"=>16];
+    $coleccionPartidas[5] =["palabraWordix"=>"FUEGO","jugador"=>"Majo","intentos"=>3,"puntaje"=>20];
+    $coleccionPartidas[6] =["palabraWordix"=>"TINTO","jugador"=>"Nico","intentos"=>6,"puntaje"=>24];
+    $coleccionPartidas[7] =["palabraWordix"=>"NAVES","jugador"=>"Gustavo","intentos"=>6,"puntaje"=>15];
+    $coleccionPartidas[8] =["palabraWordix"=>"PISOS","jugador"=>"Majo","intentos"=>4,"puntaje"=>10];
+    $coleccionPartidas[9] =["palabraWordix"=>"CASCO","jugador"=>"Sergio","intentos"=>1,"puntaje"=>8];
+    return $coleccionPartidas;
+}
+
+
+/** FUNCION MOSTRAR PARTIDA DESEADA POR EL USUARIO
+ * @param int $nroPartida
+ * @return array
+ */
+function mostrarPartida($nroPartida){
+    //array $partidaDeseada
+    $partida = cargarPartidas();
+    $partidaDeseada = $partida[$nroPartida];
+    print_r ($partidaDeseada);
+}
+
+
 /**
  * Escrbir un texto en color ROJO
  * @param string $texto)
@@ -137,8 +168,8 @@ function escribirSegunEstado($texto, $estado)
     }
 }
 
-/**
- * ****COMPLETAR*****
+/** MENSAJE DE BIENVENIDA
+ *@param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -151,7 +182,7 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ *@param array $cadena
  */
 function esPalabra($cadena)
 {

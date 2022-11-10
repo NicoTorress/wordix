@@ -42,12 +42,14 @@ function cargarColeccionPalabras()
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
-//imprimirResultado($partida);
+//imprimirResultado($partidas
 
+echo"ingrese un num:";
+$num = trim(fgets(STDIN));
 
-
+echo mostrarPartida($num);
 /*
 do {
     $opcion = ...;
