@@ -26,7 +26,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
+/**FUNCION QUE SOLICITA UN NUMERO ENTRE UN RANGO DE VALORES Y VERIFICA QUE SE ENCUENTRE EN ESE RANGO pto(5)
  *  ****COMPLETAR*****
  */
 function solicitarNumeroEntre($min, $max)
@@ -41,7 +41,7 @@ function solicitarNumeroEntre($min, $max)
 }
 
 
-/** MENU DE OPCIONES
+/** MENU DE OPCIONES pto(3)
  * @return int
  */
 function seleccionarOpcion(){
@@ -66,7 +66,7 @@ function seleccionarOpcion(){
 }
 
 
-/**FUNCION CARGAR PARTIDAS
+/**FUNCION CARGAR PARTIDAS pto(2)
  *@return array
  */
 function cargarPartidas(){
@@ -85,7 +85,7 @@ function cargarPartidas(){
 }
 
 
-/** FUNCION MOSTRAR PARTIDA DESEADA POR EL USUARIO
+/** FUNCION MOSTRAR PARTIDA DESEADA POR EL USUARIO pto(6)
  * @param int $nroPartida
  * @return array
  */
@@ -95,6 +95,30 @@ function mostrarPartida($nroPartida){
     $partidaDeseada = $partida[$nroPartida];
     print_r ($partidaDeseada);
 }
+
+
+/** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS pto(7)
+ * @param array $coleccionPalabra
+ * @param string $nuevaPalabra
+ * @return array
+ */
+function agregarPalabra($coleccionPalabra, $nuevaPalabra){
+    //
+    $coleccionPalabra[]= $nuevaPalabra;
+    echo json_encode($coleccionPalabra);
+}
+
+
+/** FUNCION QUE RETORNA EL INDICE DE LA PRIMER PARTIDA GANADA POR X JUGADOR pto(8)
+ * @param array $coleccionDePartidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function primerPartidaGanada($coleccionDePartidas, $nombreJugador){
+    //
+    
+}
+
 
 
 /**
@@ -197,7 +221,7 @@ function esPalabra($cadena)
     return $esLetra;
 }
 
-/**
+/** FUNCION LEER PALABRA DE 5 LETRAS pto(4)
  *  ****COMPLETAR*****
  */
 function leerPalabra5Letras()

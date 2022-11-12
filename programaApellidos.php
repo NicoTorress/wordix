@@ -11,7 +11,7 @@ include_once("wordix.php");
 /**************************************/
 
 /**
- * Obtiene una colección de palabras
+ * Obtiene una colección de palabras pto(1)
  * @return array
  */
 function cargarColeccionPalabras()
@@ -46,10 +46,12 @@ function cargarColeccionPalabras()
 //print_r($partida);
 //imprimirResultado($partidas
 
-echo"ingrese un num:";
-$num = trim(fgets(STDIN));
+//echo"ingrese un num:";
+//$num = trim(fgets(STDIN));
 
-echo mostrarPartida($num);
+//echo mostrarPartida($num);
+$coleccionPalabra = cargarColeccionPalabras();
+echo agregarPalabra($coleccionPalabra, "AUTOS");
 /*
 do {
     $opcion = ...;
