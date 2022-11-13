@@ -115,10 +115,28 @@ function agregarPalabra($coleccionPalabra, $nuevaPalabra){
  * @return array
  */
 function primerPartidaGanada($coleccionDePartidas, $nombreJugador){
-    //
-    
+      //array $primeraPartidaGanada, boolean $bandera, int $i
+    $bandera = true;
+    $i=0;
+      $primeraPartidaGanada=[];
+    while($bandera && $i<10){
+        if($coleccionDePartidas[$i]["jugador"] == $nombreJugador){
+            print_r ($coleccionDePartidas[$i]);
+            $bandera = false;
+        }
+        $i++;
+    }
 }
 
+
+/** FUNCION QUE RETORNA EL RESUMEN DE UN JUGADOR pto(9)
+ * @param array $coleccionPartida
+ * @param $nombreJugador
+ * @return array
+ */
+function resumenJugador($coleccionPartida, $nombreJugador){
+
+}
 
 
 /**

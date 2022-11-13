@@ -50,8 +50,10 @@ function cargarColeccionPalabras()
 //$num = trim(fgets(STDIN));
 
 //echo mostrarPartida($num);
-$coleccionPalabra = cargarColeccionPalabras();
-echo agregarPalabra($coleccionPalabra, "AUTOS");
+////////////$coleccionPalabra = cargarColeccionPalabras();
+////////////echo agregarPalabra($coleccionPalabra, "AUTOS");
+$coleccionDePartidas= cargarPartidas();
+echo primerPartidaGanada($coleccionDePartidas, "Nico");
 /*
 do {
     $opcion = ...;
