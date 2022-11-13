@@ -206,6 +206,7 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
+ * Ingresa una palabra, la función cuenta cuantos carácteres tiene y verifica que todos sean válidos retornando así un true, caso contrario, false
  *@param array $cadena
  */
 function esPalabra($cadena)
@@ -222,7 +223,7 @@ function esPalabra($cadena)
 }
 
 /** FUNCION LEER PALABRA DE 5 LETRAS pto(4)
- *  ****COMPLETAR*****
+ *  Solicita una palabra de 5 letras convirtiendo todos sus carácteres a mayúsculas, en caso de no ser una palabra de 5 letras, vuelve a solicitar otra 
  */
 function leerPalabra5Letras()
 {
@@ -240,7 +241,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: Asociativo
  *@return array
  */
 function iniciarTeclado()
