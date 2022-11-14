@@ -10,9 +10,9 @@ include_once("wordix.php");
 /*Rebolledo, Sergio Emiliano. FAI-4055. Tecnicatura Universitaria en Desarrollo Web. sergio.rebolledo@est.fi.uncoma.edu.ar. Usuario Github: sergrebo /*
 
 
-/**************************************/
-/***** DEFINICION DE FUNCIONES ********/
-/**************************************/
+/********************************************************/
+/****************** DEFINIR FUNCIONES ******************/
+/********************************************************/
 
 /**
  * Obtiene una colección de palabras pto(1)
@@ -226,15 +226,9 @@ Adivinadas:\n
 }
 
 
-
-
-/* ... COMPLETAR ... */
-
-
-
-/**************************************/
-/*********** PROGRAMA PRINCIPAL *******/
-/**************************************/
+/********************************************************/
+/****************** PROGRAMA PRINCIPAL ******************/
+/********************************************************/
 
 //Declaración de variables:
 
