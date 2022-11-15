@@ -92,15 +92,42 @@ function informePartida($coleccionPartidas, $nroPartida) {
 	echo "************************************\n";
 }
 
+/**
+ * Verifica que la palabra que se agregará no esta dentro del arreglo
+ * @param array $coleccionPalabra
+ * @param string $palabra
+ * @return string 
+ */
+function analizarPalabra($coleccionPalabras){
+    //BOOLEAN $condicion
+    
+    
+    do {
+        $i = 0;
+        $condicion = false;
+        $palabra = leerPalabra5Letras();
+
+        while ($i < count($coleccionPalabras)-1 && !$condicion) { 
+            if ($palabra == $coleccionPalabras[$i]) {
+                echo "Su palabra ya se encuentra registrada, por favor, elija otra: ";
+                
+                $condicion = true;
+            }
+            $i++;
+        }
+    } while ($condicion);
+    return $palabra;
+}
+
 /** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS pto(7)
  * @param array $coleccionPalabra
  * @param string $nuevaPalabra
  * @return array
  */
-function agregarPalabra($coleccionPalabra, $nuevaPalabra){
-    //
-    $coleccionPalabra[]= $nuevaPalabra;
-    echo "\n". json_encode($coleccionPalabra). "\n";
+function agregarPalabra($coleccionPalabras, $nuevaPalabra){
+
+    $coleccionPalabras[]= $nuevaPalabra;
+    echo "\n". json_encode($coleccionPalabras). "\n";
     echo "\nSe ha agregado la palabra ". $nuevaPalabra. " para poder jugar con ella.\n";
 }
 
@@ -335,11 +362,10 @@ do {
 
         case 7:
             // Aqui se le solicita al usuario una nueva palabra de 5 letras que posteriormente podra usarse para jugar.
-            $palabraNueva= leerPalabra5Letras();
+            $palabraNueva = analizarPalabra($coleccionPalabras);
             agregarPalabra($coleccionPalabras, $palabraNueva);
             
             break;
-
             
     }
 } while ($opcion != 8);
