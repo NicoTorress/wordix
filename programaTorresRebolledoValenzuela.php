@@ -276,9 +276,6 @@ do {
             
             $coleccionPartidas[]= jugarWordix($coleccionPalabras[$indicePalabra], $nombreJugador);
 
-            //print_r($coleccionPartidas);
-
-            echo "FIN";
 
             break;
 
@@ -299,8 +296,6 @@ do {
             } while ($haJugado);
 
             $coleccionPartidas[]= jugarWordix($coleccionPalabras[$indicePalabra], $nombreJugador);
-
-            echo "FIN";
             
             break;
 
