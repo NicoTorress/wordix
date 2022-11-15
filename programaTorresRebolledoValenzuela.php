@@ -30,22 +30,27 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/** 
- * Entran un numero entero minimo y uno maximo. Solicita al usuario un numero ingresado por teclado. Si el numero ingresado no es entero o no se encuentra entre minimo y maximo, solicita otro numero hasta cumplir con las condiciones. Retorna el numero ingresado.
- *@param INT $min
- *@param INT $max
- *@return INT
+/** MENU DE OPCIONES pto(3)
+ * @return int
  */
-function solicitarNumeroEntre($min, $max)
-{
-    //int $numero
-    $numero = trim(fgets(STDIN));
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-    }
-    return $numero;
+function seleccionarOpcion(){
+    //int $eleccion
+
+    echo "\n--------------MENÚ DE OPCIONES-------------\n" ;
+    echo "1.JUGAR AL WORDIX CON UNA PALABRA ELEGIDA \n";
+    echo "2.JUGAR AL WORDIX CON UNA PALABRA ALEATORIA \n";
+    echo "3.MOSTRAR UNA PARTIDA \n";
+    echo "4.MOSTRAR LA PRIMER PARTIDA GANADORA \n";
+    echo "5.MOSTRAR RESUMEN DE JUGADOR \n";
+    echo "6.MOSTRAR LISTADO DE PARTIDAS ORDENADAS POR JUGADOR Y POR PALABRA \n";
+    echo "7.AGREGAR UNA PALABRA DE 5 LETRAS A WORDIX \n";
+    echo "8.SALIR \n";
+    echo "Ingrese su opción: ";
+    $eleccion = solicitarNumeroEntre(1, 8);
+    
+    return $eleccion;
 }
+
 
 /** 
  * Obtiene una coleccion de partidas
@@ -66,50 +71,15 @@ function cargarPartidas()
     return ($coleccionPartidas);
 }
 
-/** 
- * Recibe una cadena de caracteres como entrada. Evalua si la misma esta formada solo por letras.
- *@param STRING $cadena
- *@return BOOLEAN
- */
-function esPalabra($cadena)
-{
-    //int $cantCaracteres, $i, boolean $esLetra
-    $cantCaracteres = strlen($cadena);
-    $esLetra = true;
-    $i = 0;
-    while ($esLetra && $i < $cantCaracteres) {
-        $esLetra =  ctype_alpha($cadena[$i]);
-        /* La funcion integrada a PHP ctype_alpha verifica que los caracteres del string ingresado sean alfabeticos, mayusculas o minusculas. Dado su argumento, ($cadena[$i]), analizara a la cadena como un arreglo formado por las letras de la cadena mencionada, letra a letra gracias al contador de la instruccion while */
-        $i++;
-    }
-    return $esLetra;
-}
 
-/** 
- * Solicita se ingrese una palabra de 5 letras, convierte sus letras en mayusculas, verifica su longitud y que este formada solo por letras. En caso que no se cumpla su longitud o conformacion solo en caracteres alfabeticos, se solicita ingrese otra palabra. Confirmadas las condiciones, retorna la palabra.
- *@return STRING
- */
-function leerPalabra5Letras()
-{
-    //string $palabra
-    echo "Ingrese una palabra de 5 letras: ";
-    $palabra = trim(fgets(STDIN));
-    $palabra  = strtoupper($palabra);
-
-    while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
-        echo "Debe ingresar una palabra de 5 letras:";
-        $palabra = strtoupper(trim(fgets(STDIN)));
-    }
-    return $palabra;
-}
 
 /** 
  * Ingresa un numero de partida y retorna resumen de la misma 
- *@param INT $nroPartida
+ * @param INT $nroPartida
+ * @param ARRAY $coleccionPartidas
  */
-function informePartida($nroPartida) {
-    $coleccionPartidas= cargarPartidas();
-	echo "************************************\n";
+function informePartida($coleccionPartidas, $nroPartida) {
+	echo "\n************************************\n";
     echo "Partida WORDIX ". $nroPartida. ": palabra ". $coleccionPartidas[$nroPartida]["palabraWordix"]. "\n";
     echo "Jugador: ". $coleccionPartidas[$nroPartida]["jugador"]. "\n";
 	echo "Puntaje: ". $coleccionPartidas[$nroPartida]["puntaje"]. "\n";
@@ -122,6 +92,19 @@ function informePartida($nroPartida) {
 	echo "************************************\n";
 }
 
+/** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS pto(7)
+ * @param array $coleccionPalabra
+ * @param string $nuevaPalabra
+ * @return array
+ */
+function agregarPalabra($coleccionPalabra, $nuevaPalabra){
+    //
+    $coleccionPalabra[]= $nuevaPalabra;
+    echo "\n". json_encode($coleccionPalabra). "\n";
+    echo "\nSe ha agregado la palabra ". $nuevaPalabra. " para poder jugar con ella.\n";
+}
+
+
 /** 
  * Solicita al usuario el nombre de jugador. Verifica que el mismo comience con una letra, caso contrario se solicita modificar el mismo. Convierte todas las letras a minusculas.
 *@return STRING
@@ -129,7 +112,7 @@ function informePartida($nroPartida) {
 function solicitarJugador() {
 	// STRING $nombre
 	do {
-		echo "ingrese nombre de jugador ";
+		echo "Ingrese nombre de jugador: ";
 		$nombre= trim(fgets(STDIN));
 		if (!ctype_alpha($nombre[0])) {
 			echo "El primer carácter debe ser una letra. Por favor, ingrese otro nombre.\n";
@@ -225,16 +208,42 @@ Adivinadas:\n
 ************************************\n";
 }
 
+/**
+ * Verifica si el jugador ya jugo con una palabra wordix
+ * @param ARRAY $coleccionPartidas
+ * @param ARRAY $coleccionPalabras
+ * @param INT $indicePalabra
+ * @param STRING $nombreJugador
+ * @return BOOLEAN
+ */
+
+function validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePalabra, $nombreJugador) {
+    // INT $i, $n BOOLEAN $yaJugo
+    $i=0;
+    $n=count($coleccionPartidas)-1;
+    $yaJugo= false;
+    while ($i<$n && !$yaJugo) {
+        if ($coleccionPartidas[$i]["palabraWordix"]==$coleccionPalabras[$indicePalabra]) {
+            if ($coleccionPartidas[$i]["jugador"]==$nombreJugador) {
+                $yaJugo= true;
+            }
+        }
+        $i++;
+    }
+    return $yaJugo;
+}
+
 
 /********************************************************/
 /****************** PROGRAMA PRINCIPAL ******************/
 /********************************************************/
 
 //Declaración de variables:
-
-$coleccionPalabras= [];
-$coleccionDePartidas= [];
-
+/* BOOLEAN $jugo
+ * STRING $nombreJugador
+ * INT $indicePalabra, $opcion
+ * ARRAY $coleccionPalabras, $coleccionPartidas
+*/
 
 //Inicialización de variables:
 
@@ -244,38 +253,98 @@ $coleccionPartidas= cargarPartidas();
 
 //Proceso:
 
-//$partida = jugarWordix("MELON", strtolower("MaJo"));
-//print_r($partida);
-//imprimirResultado($partidas
-
-//echo"ingrese un num:";
-//$num = trim(fgets(STDIN));
-
-//echo mostrarPartida($num);
-////////////$coleccionPalabra = cargarColeccionPalabras();
-////////////echo agregarPalabra($coleccionPalabra, "AUTOS");
-$coleccionDePartidas= cargarPartidas();
-echo primerPartidaGanada($coleccionDePartidas, "Nico");
-/*
 do {
-    $opcion = ...;
-    $opcion = seleccionarOpcion();
+    $opcion= seleccionarOpcion();
+
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            $nombreJugador= solicitarJugador();
+
+            do{
+                echo "Ingrese el numero de palabra Wordix con el que desea jugar: ";
+                $indicePalabra= solicitarNumeroEntre(0, count($coleccionPalabras)-1);
+                
+                $haJugado=validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePalabra, $nombreJugador);
+                if ($haJugado) {
+                    echo "Ya jugaste con esa palabra, por favor elije otra palabra\n";
+                }
+                else {
+                    echo "vamos a jugar\n";
+                }
+            } while($haJugado);
+            
+            $coleccionPartidas[]= jugarWordix($coleccionPalabras[$indicePalabra], $nombreJugador);
+
+            //print_r($coleccionPartidas);
+
+            echo "FIN";
 
             break;
+
+
+
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            $nombreJugador= solicitarJugador();
+            
+            do {
+                $indicePalabra= array_rand($coleccionPalabras, 1);
+                $haJugado=validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePalabra, $nombreJugador);
+                if ($haJugado) {
+                    echo "Ya jugaste con esa palabra, por favor elije otra palabra\n";
+                }
+                else {
+                    echo "vamos a jugar\n";
+                }
+            } while ($haJugado);
 
+            $coleccionPartidas[]= jugarWordix($coleccionPalabras[$indicePalabra], $nombreJugador);
+
+            echo "FIN";
+            
             break;
+
+
+
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            echo "Ingrese el numero de partida que desea revisar: ";
+            $nroPartida= solicitarNumeroEntre(0, count($coleccionPartidas)-1);
+            informePartida($coleccionPartidas, $nroPartida);
 
             break;
         
-            //...
+
+        
+        case 4:
+            $nombreJugador= solicitarJugador();
+            $indicePartidaGanada= primeraGanadaJugador($coleccionPartidas, $nombreJugador);
+            if ($indicePartidaGanada==-1) {
+                echo "\nEl jugador no tiene una partida registrada.\n";
+            } 
+            else {
+                informePartida($coleccionPartidas, $indicePartidaGanada);
+            }
+            break;
+        
+
+        case 5:
+            $nombreJugador= solicitarJugador();
+            estadisticasJugador($coleccionPartidas, $nombreJugador);
+            break;
+
+
+        case 6:
+
+            break;
+
+
+        case 7:
+            // Aqui se le solicita al usuario una nueva palabra de 5 letras que posteriormente podra usarse para jugar.
+            $palabraNueva= leerPalabra5Letras();
+            agregarPalabra($coleccionPalabras, $palabraNueva);
+            
+            break;
+
+            
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
