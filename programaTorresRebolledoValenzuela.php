@@ -58,23 +58,24 @@ function seleccionarOpcion(){
  */
 function cargarPartidas()
 {
-    $coleccionPartidas[0]=["palabraWordix"=>"MUJER", "jugador"=>"neon", "intentos"=>5, "puntaje"=>11];
-    $coleccionPartidas[1]=["palabraWordix"=>"TINTO", "jugador"=>"exart", "intentos"=>3, "puntaje"=>15];
-    $coleccionPartidas[2]=["palabraWordix"=>"MELON", "jugador"=>"elkenku", "intentos"=>4, "puntaje"=>12];
-    $coleccionPartidas[3]=["palabraWordix"=>"HUEVO", "jugador"=>"planero", "intentos"=>0, "puntaje"=>0];
-    $coleccionPartidas[4]=["palabraWordix"=>"GATOS", "jugador"=>"planero", "intentos"=>3, "puntaje"=>14];
-    $coleccionPartidas[5]=["palabraWordix"=>"QUESO", "jugador"=>"neon", "intentos"=>6, "puntaje"=>10];
-    $coleccionPartidas[6]=["palabraWordix"=>"AYUDA", "jugador"=>"cuernomocho", "intentos"=>3, "puntaje"=>12];
-    $coleccionPartidas[7]=["palabraWordix"=>"CREMA", "jugador"=>"neon", "intentos"=>1, "puntaje"=>15];
-    $coleccionPartidas[8]=["palabraWordix"=>"DUNAS", "jugador"=>"majo", "intentos"=>0, "puntaje"=>0];
-    $coleccionPartidas[9]=["palabraWordix"=>"CASAS", "jugador"=>"neon", "intentos"=>3, "puntaje"=>14];
+   // Array $coleccionPartidas 
+    $coleccionPartidas[0]=["palabraWordix"=>"MUJER", "jugador"=>"nico", "intentos"=>5, "puntaje"=>11];
+    $coleccionPartidas[1]=["palabraWordix"=>"TINTO", "jugador"=>"sergio", "intentos"=>3, "puntaje"=>15];
+    $coleccionPartidas[2]=["palabraWordix"=>"MELON", "jugador"=>"jazmin", "intentos"=>4, "puntaje"=>12];
+    $coleccionPartidas[3]=["palabraWordix"=>"HUEVO", "jugador"=>"david", "intentos"=>0, "puntaje"=>0];
+    $coleccionPartidas[4]=["palabraWordix"=>"GATOS", "jugador"=>"claudia", "intentos"=>3, "puntaje"=>14];
+    $coleccionPartidas[5]=["palabraWordix"=>"QUESO", "jugador"=>"nico", "intentos"=>6, "puntaje"=>10];
+    $coleccionPartidas[6]=["palabraWordix"=>"AYUDA", "jugador"=>"jazmin", "intentos"=>3, "puntaje"=>12];
+    $coleccionPartidas[7]=["palabraWordix"=>"CREMA", "jugador"=>"nico", "intentos"=>1, "puntaje"=>15];
+    $coleccionPartidas[8]=["palabraWordix"=>"DUNAS", "jugador"=>"sergio", "intentos"=>0, "puntaje"=>0];
+    $coleccionPartidas[9]=["palabraWordix"=>"CASAS", "jugador"=>"cristian", "intentos"=>3, "puntaje"=>14];
     return ($coleccionPartidas);
 }
 
 
 
 /** 
- * Ingresa un numero de partida y retorna resumen de la misma 
+ * Ingresa un numero de partida y retorna resumen de la misma (Pto 6)
  * @param INT $nroPartida
  * @param ARRAY $coleccionPartidas
  */
@@ -93,20 +94,22 @@ function informePartida($coleccionPartidas, $nroPartida) {
 }
 
 /**
- * Verifica que la palabra que se agregará no esta dentro del arreglo
+ * Verifica que la palabra que se agregará no está dentro del arreglo
  * @param array $coleccionPalabra
  * @param string $palabra
  * @return string 
  */
 function analizarPalabra($coleccionPalabras){
     //BOOLEAN $condicion
-       
+    //String $palabra
+    //Int $i 
+
     do {
         $i = 0;
         $condicion = false;
         $palabra = leerPalabra5Letras();
 
-        while ($i < count($coleccionPalabras)-1 && !$condicion) { 
+        while ($i < count($coleccionPalabras) && !$condicion) { 
             if ($palabra == $coleccionPalabras[$i]) {
                 echo "Su palabra ya se encuentra registrada, por favor, elija otra: ";
                 
@@ -119,7 +122,7 @@ function analizarPalabra($coleccionPalabras){
 }
 
 
-/** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS pto(7)
+/** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS (pto 7)
  * @param array $coleccionPalabra
  * @param string $nuevaPalabra
  * @return array
@@ -127,14 +130,12 @@ function analizarPalabra($coleccionPalabras){
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 
     $coleccionPalabras[]= $nuevaPalabra;
-    //print_r ($coleccionPalabras). "\n";
-    //echo "\nSe ha agregado la palabra ". $nuevaPalabra. " para poder jugar con ella.\n";
     return $coleccionPalabras;
 }
 
 
 /** 
- * Solicita al usuario el nombre de jugador. Verifica que el mismo comience con una letra, caso contrario se solicita modificar el mismo. Convierte todas las letras a minusculas.
+ * Solicita al usuario el nombre de jugador. Verifica que el mismo comience con una letra, caso contrario se solicita modificar el mismo. Convierte todas las letras a minúsculas.
 *@return STRING
 */
 function solicitarJugador() {
@@ -142,11 +143,11 @@ function solicitarJugador() {
 	do {
 		echo "Ingrese nombre de jugador: ";
 		$nombre= trim(fgets(STDIN));
-		if (!ctype_alpha($nombre[0])) {
+		if (!ctype_alpha($nombre[0])) {    //ctype_alpha, verifica que el string esté formado únicamente por letras
 			echo "El primer carácter debe ser una letra. Por favor, ingrese otro nombre.\n";
 		}
 	} while (!ctype_alpha($nombre[0]));
-	$nombre= strtolower($nombre);
+	$nombre= strtolower($nombre);    //Strtolower, convierte los strings a minúscula 
 	return $nombre;
 }
 
@@ -177,7 +178,6 @@ function primeraGanadaJugador($coleccionPartidas, $nombreJugador) {
  * Una función que dada la colección de partidas y el nombre de un jugador, retorne las estadisticas del mismo.
  *@param ARRAY $coleccionPartidas
  *@param STRING $nombreJugador
- *@return INT
  */
 function estadisticasJugador($coleccionPartidas, $nombreJugador) {
 	//INT $n, $i, $cantPartidas, $puntaje, $cantVictorias, $intento1, $intento2, $intento3, $intento4, $intento5, $intento6
@@ -237,7 +237,7 @@ Adivinadas:\n
 }
 
 /**
- * Verifica si el jugador ya jugo con una palabra wordix
+ * Verifica si el jugador ya jugó con una palabra wordix
  * @param ARRAY $coleccionPartidas
  * @param ARRAY $coleccionPalabras
  * @param INT $indicePalabra
@@ -262,7 +262,7 @@ function validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePa
 }
 
 
-/**
+/** función que compara los elementos del arrelgo coleccionPartidas respecto al jugador y/o palabra
  * @param ARRAY $a
  * @param ARRAY $b
  * @return INT
@@ -288,7 +288,6 @@ function cmp($a,$b){
 
 
 /** ordena el arreglo con la funcion uasort (pto 7)
- *  
  * @param ARRAY $coleccionPartidas
  */
 function ordenarColeccionPartidas($coleccionPartidas){
@@ -302,10 +301,10 @@ function ordenarColeccionPartidas($coleccionPartidas){
 /********************************************************/
 
 //Declaración de variables:
-/* BOOLEAN $jugo
- * STRING $nombreJugador
- * INT $indicePalabra, $opcion
- * ARRAY $coleccionPalabras, $coleccionPartidas
+/* BOOLEAN $haJugado, 
+ * STRING $nombreJugador, $palabraNueva, 
+ * INT $indicePalabra, $opcion, $nroPartida, $indicePartidaGanada, 
+ * ARRAY $coleccionPalabras, $coleccionPartidas, $coleccionOrdenada, 
 */
 
 //Inicialización de variables:
@@ -331,9 +330,6 @@ do {
                 $haJugado=validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePalabra, $nombreJugador);
                 if ($haJugado) {
                     echo "Ya jugaste con esa palabra, por favor elije otra palabra\n";
-                }
-                else {
-                    echo "vamos a jugar\n";
                 }
             } while($haJugado);
             
@@ -401,8 +397,12 @@ do {
             // Aqui se le solicita al usuario una nueva palabra de 5 letras que posteriormente podra usarse para jugar.
             $palabraNueva = analizarPalabra($coleccionPalabras);
             $coleccionPalabras= agregarPalabra($coleccionPalabras, $palabraNueva);
-            print_r ($coleccionPalabras); 
-            break;
+            if ($coleccionPalabras[count($coleccionPalabras)-1] == $palabraNueva) {
+                echo "\nSu palabra ha sido agregada!\n";
+            }
             
+            //print_r ($coleccionPalabras); 
+            break;
+
     }
 } while ($opcion != 8);

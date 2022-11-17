@@ -43,28 +43,6 @@ function solicitarNumeroEntre($min, $max)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/** FUNCION QUE RETORNA EL RESUMEN DE UN JUGADOR pto(9)
- * @param array $coleccionPartida
- * @param $nombreJugador
- * @return array
- */
-function resumenJugador($coleccionPartida, $nombreJugador){
-
-}
-
-
 /**
  * Escrbir un texto en color ROJO
  * @param string $texto)
@@ -150,18 +128,18 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * Ingresa una palabra, la función cuenta cuantos carácteres tiene y verifica que todos sean válidos retornando así un true, caso contrario, false
+ * Ingresa una palabra, la función cuenta cuantos carácteres tiene y verifica que todos sean válidos retornando así un true, caso contrario, false.
  * @param STRING $cadena
  * @return BOOLEAN
  */
 function esPalabra($cadena)
 {
     //int $cantCaracteres, $i, boolean $esLetra
-    $cantCaracteres = strlen($cadena);
+    $cantCaracteres = strlen($cadena);   //strlen, devuelve la cantidad de elementos que tiene un string 
     $esLetra = true;
     $i = 0;
     while ($esLetra && $i < $cantCaracteres) {
-        $esLetra =  ctype_alpha($cadena[$i]);
+        $esLetra =  ctype_alpha($cadena[$i]);   //ctype_alpha, verifica que el string esté formado únicamente por letras
         $i++;
     }
     return $esLetra;
@@ -176,11 +154,11 @@ function leerPalabra5Letras()
     //string $palabra
     echo "Ingrese una palabra de 5 letras: ";
     $palabra = trim(fgets(STDIN));
-    $palabra  = strtoupper($palabra);
+    $palabra  = strtoupper($palabra);   //strtoupper, convierte el string a mayúscula
 
     while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
         echo "Debe ingresar una palabra de 5 letras:";
-        $palabra = strtoupper(trim(fgets(STDIN)));
+        $palabra = strtoupper(trim(fgets(STDIN)));   //strtoupper, convierte el string a mayúscula
     }
     return $palabra;
 }
@@ -240,6 +218,9 @@ function escribirTeclado($teclado)
  */
 function imprimirIntentosWordix($estructuraIntentosWordix)
 {
+    //INT $cantIntentosRealizados, $i, $j
+    //Array $estructuraintento, $intentoLetra
+
     $cantIntentosRealizados = count($estructuraIntentosWordix);
     //$cantIntentosFaltantes = CANT_INTENTOS - $cantIntentosRealizados;
 
@@ -273,11 +254,16 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
  */
 function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palabraIntento)
 {
-    $cantCaracteres = strlen($palabraIntento);
+    //INT $cantCaracteres
+    //ARRAY $estructuraPalabraIntento 
+    //STRING $letraIntento, $estado
+    //BOOLEAN $posición
+
+    $cantCaracteres = strlen($palabraIntento);    //strlen, devuelve la cantidad de elementos que tiene un string 
     $estructuraPalabraIntento = []; /*almacena cada letra de la palabra intento con su estado */
     for ($i = 0; $i < $cantCaracteres; $i++) {
         $letraIntento = $palabraIntento[$i];
-        $posicion = strpos($palabraWordix, $letraIntento);
+        $posicion = strpos($palabraWordix, $letraIntento);   //strpos, Encuentra la posición de la primer ocurrencia del segundo string en en primero, sino lo encuentre devuevle false.
         if ($posicion === false) {  
             $estado = ESTADO_LETRA_DESCARTADA;
         } else {
@@ -287,7 +273,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
                 $estado = ESTADO_LETRA_PERTENECE;
             }
         }
-        array_push($estructuraPalabraIntento, ["letra" => $letraIntento, "estado" => $estado]);
+        array_push($estructuraPalabraIntento, ["letra" => $letraIntento, "estado" => $estado]);   //array_push, agrega uno o más elementos al final de un arreglo
     }
 
     array_push($estruturaIntentosWordix, $estructuraPalabraIntento);
@@ -307,6 +293,8 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
  */
 function actualizarTeclado($teclado, $estructuraPalabraIntento)
 {
+    //STRING $letra, $estado
+
     foreach ($estructuraPalabraIntento as $letraIntento) {
         $letra = $letraIntento["letra"];
         $estado = $letraIntento["estado"];
@@ -331,6 +319,9 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
  */
 function esIntentoGanado($estructuraPalabraIntento)
 {
+    //INT $cantLetras, $i
+    //BOOLEAN $ganado
+
     $cantLetras = count($estructuraPalabraIntento);
     $i = 0;
 
@@ -353,9 +344,10 @@ function esIntentoGanado($estructuraPalabraIntento)
  * @param INT $nroIntento
  * @return INT
  */
-function obtenerPuntajeWordix($palabraWordix, $nroIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($palabraWordix, $nroIntento)  
 {
-    // INT $puntaje
+    // INT $puntaje, $i
+
     $puntaje= 0;
 
     if ($nroIntento==1) {
@@ -400,6 +392,10 @@ function obtenerPuntajeWordix($palabraWordix, $nroIntento)  /* ****COMPLETAR****
  */
 function jugarWordix($palabraWordix, $nombreUsuario)
 {
+    //ARRAY $arregloDeIntentoWordix, $teclado, $partida
+    //INT $indiceIntento, $nroIntento, $puntaje
+    //BOOLEAN $ganoElIntento
+
     /*Inicialización*/
     $arregloDeIntentosWordix = [];
     $teclado = iniciarTeclado();
