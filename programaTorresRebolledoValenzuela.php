@@ -45,7 +45,7 @@ function seleccionarOpcion(){
     echo "6.MOSTRAR LISTADO DE PARTIDAS ORDENADAS POR JUGADOR Y POR PALABRA \n";
     echo "7.AGREGAR UNA PALABRA DE 5 LETRAS A WORDIX \n";
     echo "8.SALIR \n";
-    echo "Ingrese su opción: ";
+    echo "\nIngrese su opción: ";
     $eleccion = solicitarNumeroEntre(1, 8);
     
     return $eleccion;
@@ -100,8 +100,7 @@ function informePartida($coleccionPartidas, $nroPartida) {
  */
 function analizarPalabra($coleccionPalabras){
     //BOOLEAN $condicion
-    
-    
+       
     do {
         $i = 0;
         $condicion = false;
@@ -326,7 +325,7 @@ do {
             $nombreJugador= solicitarJugador();
 
             do{
-                echo "Ingrese el numero de palabra Wordix con el que desea jugar: ";
+                echo "Ingrese el número de palabra Wordix con el que desea jugar: ";
                 $indicePalabra= solicitarNumeroEntre(0, count($coleccionPalabras)-1);
                 
                 $haJugado=validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePalabra, $nombreJugador);
@@ -355,7 +354,7 @@ do {
                     echo "Ya jugaste con esa palabra, por favor elije otra palabra\n";
                 }
                 else {
-                    echo "vamos a jugar\n";
+                    echo "\nVamos a jugar!\n";
                 }
             } while ($haJugado);
 
