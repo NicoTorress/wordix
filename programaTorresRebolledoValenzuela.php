@@ -250,7 +250,7 @@ function validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePa
     $i=0;
     $n=count($coleccionPartidas)-1;
     $yaJugo= false;
-    while ($i<$n && !$yaJugo) {
+    while ($i<=$n && !$yaJugo) {
         if ($coleccionPartidas[$i]["palabraWordix"]==$coleccionPalabras[$indicePalabra]) {
             if ($coleccionPartidas[$i]["jugador"]==$nombreJugador) {
                 $yaJugo= true;
