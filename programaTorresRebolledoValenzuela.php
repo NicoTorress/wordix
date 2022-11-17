@@ -62,12 +62,12 @@ function cargarPartidas()
     $coleccionPartidas[1]=["palabraWordix"=>"TINTO", "jugador"=>"exart", "intentos"=>3, "puntaje"=>15];
     $coleccionPartidas[2]=["palabraWordix"=>"MELON", "jugador"=>"elkenku", "intentos"=>4, "puntaje"=>12];
     $coleccionPartidas[3]=["palabraWordix"=>"HUEVO", "jugador"=>"planero", "intentos"=>0, "puntaje"=>0];
-    $coleccionPartidas[4]=["palabraWordix"=>"GATOS", "jugador"=>"Planero", "intentos"=>3, "puntaje"=>14];
+    $coleccionPartidas[4]=["palabraWordix"=>"GATOS", "jugador"=>"planero", "intentos"=>3, "puntaje"=>14];
     $coleccionPartidas[5]=["palabraWordix"=>"QUESO", "jugador"=>"neon", "intentos"=>6, "puntaje"=>10];
     $coleccionPartidas[6]=["palabraWordix"=>"AYUDA", "jugador"=>"cuernomocho", "intentos"=>3, "puntaje"=>12];
-    $coleccionPartidas[7]=["palabraWordix"=>"CREMA", "jugador"=>"v", "intentos"=>1, "puntaje"=>15];
+    $coleccionPartidas[7]=["palabraWordix"=>"CREMA", "jugador"=>"neon", "intentos"=>1, "puntaje"=>15];
     $coleccionPartidas[8]=["palabraWordix"=>"DUNAS", "jugador"=>"majo", "intentos"=>0, "puntaje"=>0];
-    $coleccionPartidas[9]=["palabraWordix"=>"CASAS", "jugador"=>"rudolf", "intentos"=>3, "puntaje"=>14];
+    $coleccionPartidas[9]=["palabraWordix"=>"CASAS", "jugador"=>"neon", "intentos"=>3, "puntaje"=>14];
     return ($coleccionPartidas);
 }
 
@@ -119,6 +119,7 @@ function analizarPalabra($coleccionPalabras){
     return $palabra;
 }
 
+
 /** AGREGA Y RETORNA UNA NUEVA PALABRA A LA COLECCION DE PALABRAS pto(7)
  * @param array $coleccionPalabra
  * @param string $nuevaPalabra
@@ -127,8 +128,9 @@ function analizarPalabra($coleccionPalabras){
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 
     $coleccionPalabras[]= $nuevaPalabra;
-    echo "\n". json_encode($coleccionPalabras). "\n";
-    echo "\nSe ha agregado la palabra ". $nuevaPalabra. " para poder jugar con ella.\n";
+    //print_r ($coleccionPalabras). "\n";
+    //echo "\nSe ha agregado la palabra ". $nuevaPalabra. " para poder jugar con ella.\n";
+    return $coleccionPalabras;
 }
 
 
@@ -261,6 +263,41 @@ function validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePa
 }
 
 
+/**
+ * @param ARRAY $a
+ * @param ARRAY $b
+ * @return INT
+ */
+function cmp($a,$b){
+    // INT $orden
+    if($a["jugador"] > $b["jugador"]){
+        $orden = 1;
+    } 
+    elseif($a["jugador"] < $b["jugador"]){
+        $orden = -1;
+    }
+    else{
+        if($a["palabraWordix"] > $b["palabraWordix"]){
+            $orden = 1;
+        }
+        elseif($a["palabraWordix"] < $b["palabraWordix"]){
+            $orden = -1;
+        }
+    }
+    return $orden;
+}
+
+
+/** ordena el arreglo con la funcion uasort (pto 7)
+ *  
+ * @param ARRAY $coleccionPartidas
+ */
+function ordenarColeccionPartidas($coleccionPartidas){
+    uasort($coleccionPartidas, 'cmp');
+    return $coleccionPartidas;
+}
+
+
 /********************************************************/
 /****************** PROGRAMA PRINCIPAL ******************/
 /********************************************************/
@@ -356,15 +393,16 @@ do {
 
 
         case 6:
-
+            $coleccionOrdenada= ordenarColeccionPartidas($coleccionPartidas);
+            print_r ($coleccionOrdenada);
             break;
 
 
         case 7:
             // Aqui se le solicita al usuario una nueva palabra de 5 letras que posteriormente podra usarse para jugar.
             $palabraNueva = analizarPalabra($coleccionPalabras);
-            agregarPalabra($coleccionPalabras, $palabraNueva);
-            
+            $coleccionPalabras= agregarPalabra($coleccionPalabras, $palabraNueva);
+            print_r ($coleccionPalabras); 
             break;
             
     }
