@@ -262,7 +262,7 @@ function validarPalabraJugador($coleccionPartidas, $coleccionPalabras, $indicePa
 }
 
 
-/** función que compara los elementos del arrelgo coleccionPartidas respecto al jugador y/o palabra
+/** función que compara los elementos del arreglo coleccionPartidas respecto al jugador y/o palabra
  * @param ARRAY $a
  * @param ARRAY $b
  * @return INT
